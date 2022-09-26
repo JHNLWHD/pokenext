@@ -7,6 +7,7 @@ import { getPokemonColor } from "../utils/color.utils";
 import { UCFirst } from "../utils/string.utils";
 import PokemonTypeBadge from "./PokemonTypeBadge";
 import PokemonGraph from "./PokemonGraph";
+import Spinner from "./Spinner";
 
 type PokemonDetailsCardProps = {
   pokemon: Pokemon;
@@ -25,7 +26,7 @@ export default function PokemonDetailsCard({
   const { result, error } = useFetchPokemonSpecies(pokemon.name);
 
   if (error) return <h1>Something went wrong!</h1>;
-  if (!result) return <h1>Loading...</h1>;
+  if (!result) return <Spinner />;
 
   const description = result.flavor_text_entries.filter(
     (flavor) => flavor.language.name === "en"

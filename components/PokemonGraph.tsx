@@ -28,7 +28,9 @@ export default function PokemonGraph({ pokemon }: PokemonGraphProps) {
   });
   return (
     <div className="w-full mx-auto pb-4">
-      <table>{pokemonStats}</table>
+      <table>
+        <tbody>{pokemonStats}</tbody>
+      </table>
     </div>
   );
 }

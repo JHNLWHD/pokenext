@@ -4,6 +4,7 @@ import React from "react";
 import { useFetchPokemonDetails } from "../hooks/useRequest";
 import { NamedAPIResource } from "../interface";
 import { getPokemonColor } from "../utils/color.utils";
+import Spinner from "./Spinner";
 
 type PokemonCardProps = {
   pokemon: NamedAPIResource;
@@ -14,7 +15,7 @@ export default function PokemonCard({ pokemon }: PokemonCardProps) {
   const { result, error } = useFetchPokemonDetails(name);
 
   if (error) return <h1>Something went wrong!</h1>;
-  if (!result) return <h1>Loading...</h1>;
+  if (!result) return <Spinner />;
 
   const pokemonId = ("00" + result.id).slice(-3);
   const pokemonType = result.types[0].type.name;
