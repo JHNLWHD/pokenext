@@ -16,7 +16,6 @@ const Home: NextPageWithLayout = () => {
 
   return (
     <main>
-      <h1>My pokemons</h1>
       <div className="container mx-auto px-10">
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-6">
           {pokemons.map((pokemon: NamedAPIResource) => (
