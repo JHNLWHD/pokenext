@@ -2,7 +2,10 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import { Pokemon } from '../interface'
-import { useFetchPokemonSpecies } from '../hooks/useRequest'
+import {
+  useFetchPokemonDetailsById,
+  useFetchPokemonSpecies,
+} from '../hooks/useRequest'
 import { getPokemonColor } from '../utils/color.utils'
 import { UCFirst } from '../utils/string.utils'
 import PokemonTypeBadge from './PokemonTypeBadge'
@@ -11,6 +14,9 @@ import Spinner from './Spinner'
 import WeightCard from './WeightCard'
 import HeightCard from './HeightCard'
 import MovesCard from './MovesCard'
+import arrowLeft from '../assets/arrow-left.svg'
+import chevronRight from '../assets/chevron-right.svg'
+import ErrorPage from './ErrorPage'
 
 type PokemonDetailsCardProps = {
   pokemon: Pokemon
@@ -26,9 +32,17 @@ export default function PokemonDetailsCard({
 
   const img = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${pokemonId}.png`
 
-  const { result, error } = useFetchPokemonSpecies(pokemon.name)
+  const prevId = pokemon.id > 1 ? pokemon.id - 1 : 1
+  const nextId = pokemon.id < 1154 ? pokemon.id + 1 : 1154
 
-  if (error) return <h1>Something went wrong!</h1>
+  const { result, error } = useFetchPokemonSpecies(pokemon.name)
+  const { pokemonName: prevPokemon, error: error1 } =
+    useFetchPokemonDetailsById(prevId)
+  const { pokemonName: nextPokemon, error: error2 } =
+    useFetchPokemonDetailsById(nextId)
+
+  if (error || error1 || error2) return <ErrorPage />
+
   if (!result) return <Spinner />
 
   const description = result.flavor_text_entries.filter(
@@ -50,20 +64,43 @@ export default function PokemonDetailsCard({
       <PokemonTypeBadge key={index} pokemonType={type.type.name} />
     ))
   }
+
+  function getArrowLink(arrowType?: string) {
+    const arrowOrientation = arrowType === 'right' ? '' : 'rotate-180'
+    const linkAddress =
+      arrowType === 'right'
+        ? `/pokemon/${nextPokemon}`
+        : `/pokemon/${prevPokemon}`
+    return (
+      <div className={`${arrowOrientation} p-4 hover:cursor-pointer`}>
+        <Link href={linkAddress}>
+          <Image src={chevronRight} alt="left-arrow" />
+        </Link>
+      </div>
+    )
+  }
   return (
     <div className="container mx-auto max-w-md">
       <div
         className={`container flex flex-col ${pokemonBorder} my-2 gap-3 rounded-md border-4`}
       >
-        <div className={`${pokemonBackground}`}>
-          <div className="flex items-center justify-between">
-            <Link href={'/'}>{`<-`}</Link>
-            <span className="text-2xl font-bold text-white">
-              {UCFirst(pokemon.name)}
-            </span>
-            <span className="mr-2 font-bold text-white">#{pokemonId}</span>
+        <div className={`${pokemonBackground} relative h-full`}>
+          <div className="flex items-center justify-between pt-5">
+            <div className="ml-4">
+              <Link href={'/'}>
+                <Image
+                  src={arrowLeft}
+                  alt="return"
+                  className=" hover:cursor-pointer"
+                />
+              </Link>
+              <span className="ml-6 text-2xl font-bold text-white">
+                {UCFirst(pokemon.name)}
+              </span>
+            </div>
+            <span className="pr-4 font-bold text-white">#{pokemonId}</span>
           </div>
-          <div className="-mb-24">
+          <div className="-mb-36">
             <Image
               src={img}
               alt={pokemon.name}
@@ -72,6 +109,10 @@ export default function PokemonDetailsCard({
               layout="responsive"
               objectFit="cover"
             />
+          </div>
+          <div className="flex justify-between">
+            {getArrowLink()}
+            {getArrowLink('right')}
           </div>
         </div>
         <div className="flex flex-col items-center justify-center">

@@ -19,8 +19,12 @@ export default function MovesCard({ moves }: MovesCardProps) {
       className="flex flex-col items-center justify-around"
     >
       <div className="flex flex-col">
-        <div className="text-md mx-auto">{UCFirst(pokemonMoves[0])}</div>
-        <div className="text-md mx-auto">{UCFirst(pokemonMoves[1])}</div>
+        <div className="text-md mx-auto">
+          {pokemonMoves[0] ? UCFirst(pokemonMoves[0]) : ''}
+        </div>
+        <div className="text-md mx-auto">
+          {pokemonMoves[1] ? UCFirst(pokemonMoves[1]) : ''}
+        </div>
       </div>
       <div className="flex items-baseline text-xs font-semibold text-gray-600">
         Moves

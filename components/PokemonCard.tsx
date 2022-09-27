@@ -4,6 +4,7 @@ import React from 'react'
 import { useFetchPokemonDetails } from '../hooks/useRequest'
 import { NamedAPIResource } from '../interface'
 import { getPokemonColor } from '../utils/color.utils'
+import ErrorPage from './ErrorPage'
 import Spinner from './Spinner'
 
 type PokemonCardProps = {
@@ -14,7 +15,8 @@ export default function PokemonCard({ pokemon }: PokemonCardProps) {
   const { name } = pokemon
   const { result, error } = useFetchPokemonDetails(name)
 
-  if (error) return <h1>Something went wrong!</h1>
+  if (error) return <ErrorPage />
+
   if (!result) return <Spinner />
 
   const pokemonId = ('00' + result.id).slice(-3)
@@ -26,7 +28,7 @@ export default function PokemonCard({ pokemon }: PokemonCardProps) {
   return (
     <Link href={`/pokemon/${pokemon.name}`}>
       <div
-        className={`container flex flex-col ${pokemonBorder} my-2 gap-3 rounded-md border-4 hover:cursor-pointer`}
+        className={`container flex flex-col bg-white ${pokemonBorder} my-2 gap-3 rounded-md border-4 hover:cursor-pointer`}
       >
         <span className={`flex justify-end ${pokemonText} mr-2`}>
           #{pokemonId}

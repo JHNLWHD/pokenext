@@ -4,11 +4,12 @@ import { NamedAPIResource } from '../interface'
 import type { NextPageWithLayout } from './_app'
 import Layout from '../components/Layout'
 import Spinner from '../components/Spinner'
+import ErrorPage from '../components/ErrorPage'
 
 const Home: NextPageWithLayout = () => {
   const { result, error } = useFetchPokemon()
 
-  if (error) return <h1>Something went wrong!</h1>
+  if (error) return <ErrorPage />
   if (!result) return <Spinner />
 
   const pokemons = result.results
