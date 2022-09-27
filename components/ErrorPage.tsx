@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { useRouter } from 'next/router'
 import React from 'react'
 

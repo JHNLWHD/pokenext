@@ -5,10 +5,11 @@ const fetcher: Fetcher<NamedAPIResourceList> = (url: string) =>
   fetch(url).then((res) => res.json())
 
 const API_URL = 'https://pokeapi.co/api/v2/pokemon'
-const PAGE_LIMIT = 150
 
-export default function useFetchPokemon() {
-  const uri = `${API_URL}?limit=${PAGE_LIMIT}`
+export default function useFetchPokemon(url?: string) {
+  let uri = ''
+
+  url ? (uri = url) : (uri = `${API_URL}`)
   const { data: result, error } = useSWR(uri, fetcher)
 
   return { result, error }

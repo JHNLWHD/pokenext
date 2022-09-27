@@ -2,7 +2,11 @@ import Image from 'next/image'
 import React from 'react'
 import searchIcon from '../assets/magnifying-glass.svg'
 
-export default function SearchBar() {
+type SearchBarProps = {
+  setSearchKey: (value: string) => void
+}
+
+export default function SearchBar({ setSearchKey }: SearchBarProps) {
   return (
     <div className="container px-10">
       <div className="relative flex items-center">
@@ -10,6 +14,7 @@ export default function SearchBar() {
           <Image src={searchIcon} alt="search" layout="responsive" />
         </div>
         <input
+          onChange={(e) => setSearchKey(e.target.value)}
           className="h-10 w-full rounded-lg pl-4 text-center"
           placeholder="Search"
         />
