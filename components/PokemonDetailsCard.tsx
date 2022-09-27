@@ -79,10 +79,10 @@ export default function PokemonDetailsCard({
             {renderPokemonType()}
           </div>
           <div className={`${pokemonText} my-4 text-2xl font-bold`}>About</div>
-          <div className="grid grid-cols-3 divide-x-4">
-            <WeightCard />
-            <HeightCard />
-            <MovesCard />
+          <div className="grid w-full grid-cols-3 divide-x-4">
+            <WeightCard weight={pokemon.weight} />
+            <HeightCard height={pokemon.height} />
+            <MovesCard moves={pokemon.moves} />
           </div>
           <div className="mx-auto p-2 text-center">{pokemonDescription}</div>
           <div className={`${pokemonText} text-2xl font-bold`}>Base Stats</div>

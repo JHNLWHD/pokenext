@@ -1,5 +1,21 @@
-import React from "react";
+import Image from 'next/image'
+import React from 'react'
 
-export default function WeightCard() {
-  return <div>WeightCard</div>;
+import weighingScale from '../assets/scale.svg'
+
+type WeightCardProps = {
+  weight: number
+}
+export default function WeightCard({ weight }: WeightCardProps) {
+  return (
+    <div className="flex flex-col items-center justify-around">
+      <div className="flex justify-around gap-2">
+        <div>
+          <Image src={weighingScale} alt="weighing scale" />
+        </div>
+        <div>{weight / 10} kg</div>
+      </div>
+      <div className="text-xs font-semibold text-gray-600">Weight</div>
+    </div>
+  )
 }
