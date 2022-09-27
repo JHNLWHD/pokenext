@@ -5,6 +5,7 @@ import type { NextPageWithLayout } from './_app'
 import Layout from '../components/Layout'
 import Spinner from '../components/Spinner'
 import ErrorPage from '../components/ErrorPage'
+import SearchBar from '../components/SearchBar'
 
 const Home: NextPageWithLayout = () => {
   const { result, error } = useFetchPokemon()
@@ -15,15 +16,18 @@ const Home: NextPageWithLayout = () => {
   const pokemons = result.results
 
   return (
-    <main>
-      <div className="container mx-auto px-10">
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-6">
-          {pokemons.map((pokemon: NamedAPIResource) => (
-            <PokemonCard pokemon={pokemon} key={pokemon.name} />
-          ))}
+    <>
+      <SearchBar />
+      <main>
+        <div className="container mx-auto px-10">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-6">
+            {pokemons.map((pokemon: NamedAPIResource) => (
+              <PokemonCard pokemon={pokemon} key={pokemon.name} />
+            ))}
+          </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </>
   )
 }
 
