@@ -7,30 +7,43 @@ import Spinner from '../components/Spinner'
 import ErrorPage from '../components/ErrorPage'
 import SearchBar from '../components/SearchBar'
 import Pagination from '../components/Pagination'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { sortData } from '../utils/string.utils'
+import { AppContext } from '../context/AppContext'
 
 const Home: NextPageWithLayout = () => {
+  const { nameSort } = useContext(AppContext)
   const [url, setUrl] = useState('')
   const [searchKey, setSearchKey] = useState('')
-  const [sortKey, setSortKey] = useState('id')
   const { result, error } = useFetchPokemon(url)
 
   if (error) return <ErrorPage />
   if (!result) return <Spinner />
 
-  let pokemons = result.results
+  function getId(url: string) {
+    const parts = url.split('/')
+    return parseInt(parts[parts.length - 2])
+  }
 
-  if (sortKey === 'name') {
+  let pokemons = result.results.map((result) => {
+    return {
+      ...result,
+      id: getId(result.url),
+    }
+  })
+
+  if (nameSort) {
     pokemons.sort(sortData('name', 'asc'))
   } else {
-    pokemons = result.results
+    pokemons.sort(sortData('id', 'asc'))
   }
 
   const filterePokemons =
     searchKey === ''
       ? pokemons
       : pokemons.filter((p) => p.name.includes(searchKey))
+
+  console.log(filterePokemons)
 
   function renderPagination() {
     const prevUrl = result?.previous ? result.previous : ''

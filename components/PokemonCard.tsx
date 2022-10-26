@@ -28,7 +28,7 @@ export default function PokemonCard({ pokemon }: PokemonCardProps) {
   return (
     <Link href={`/pokemon/${pokemon.name}`}>
       <div
-        className={`container flex flex-col bg-white ${pokemonBorder} my-2 gap-3 rounded-md border-4 hover:cursor-pointer`}
+        className={`container flex flex-col bg-white ${pokemonBorder} my-2 gap-3 rounded-md border-4 hover:-translate-y-3 hover:cursor-pointer hover:shadow-xl`}
       >
         <span className={`flex justify-end ${pokemonText} mr-2`}>
           #{pokemonId}

@@ -1,14 +1,14 @@
-import Navbar from "./Navbar";
+import Navbar from './Navbar'
 
 export default function Layout({
   children,
 }: {
-  children: JSX.Element;
+  children: JSX.Element
 }): JSX.Element {
   return (
-    <>
+    <div>
       <Navbar />
-      <main>{children}</main>
-    </>
-  );
+      <main className="mx-10">{children}</main>
+    </div>
+  )
 }

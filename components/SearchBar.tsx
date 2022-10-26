@@ -8,7 +8,7 @@ type SearchBarProps = {
 
 export default function SearchBar({ setSearchKey }: SearchBarProps) {
   return (
-    <div className="container px-10">
+    <div className="mb-5">
       <div className="relative flex items-center">
         <div className="absolute my-auto h-6 w-6 pt-1 pl-2">
           <Image src={searchIcon} alt="search" layout="responsive" />
