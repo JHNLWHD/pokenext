@@ -16,17 +16,19 @@ export default function Navbar() {
     )
 
   return (
-    <div className="container mx-auto p-6">
+    <div className="container mx-auto p-2 md:p-6">
       <div className="flex items-center justify-between">
-        <div className="flex pl-4">
-          <div className="h-10 w-10">
+        <div className="flex items-center p-0 md:pl-4">
+          <div className="h-6 w-6 md:h-10 md:w-10">
             <Image src={logo} alt="logo" layout="responsive" />
           </div>
-          <div className="pl-4 text-4xl font-extrabold">Pokédex</div>
+          <div className="pl-4 text-2xl font-extrabold md:text-3xl lg:text-4xl">
+            Pokédex
+          </div>
         </div>
         <div
           onClick={() => setNameSort(!nameSort)}
-          className="mr-6 h-10 w-10 hover:cursor-pointer"
+          className="mr-6 hidden h-10 w-10 hover:cursor-pointer md:flex"
         >
           {imgSrc}
         </div>

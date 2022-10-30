@@ -13,7 +13,7 @@ export default function WeightCard({ weight }: WeightCardProps) {
         <div>
           <Image src={weighingScale} alt="weighing scale" />
         </div>
-        <div>{weight / 10} kg</div>
+        <div className="text-sm md:text-lg">{weight / 10} kg</div>
       </div>
       <div className="text-xs font-semibold text-gray-600">Weight</div>
     </div>

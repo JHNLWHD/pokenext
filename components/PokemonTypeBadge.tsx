@@ -12,7 +12,7 @@ export default function PokemonTypeBadge({
   const { pokemonBackground } = getPokemonColor(pokemonType)
   return (
     <span
-      className={`${pokemonBackground} inline-flex items-center justify-center rounded-full px-2 py-1 text-sm font-bold leading-none text-white`}
+      className={`${pokemonBackground} inline-flex items-center justify-center rounded-full px-2 py-1 text-sm font-bold leading-none text-white md:text-lg`}
     >
       {UCFirst(pokemonType)}
     </span>

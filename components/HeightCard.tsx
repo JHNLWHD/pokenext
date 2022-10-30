@@ -13,7 +13,7 @@ export default function HeightCard({ height }: HeightCardProps) {
         <div>
           <Image src={ruler} alt="weighing scale" />
         </div>
-        <div>{height / 10} m</div>
+        <div className="text-sm md:text-lg">{height / 10} m</div>
       </div>
       <div className="flex items-baseline text-xs font-semibold text-gray-600">
         Height

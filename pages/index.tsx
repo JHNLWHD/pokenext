@@ -57,7 +57,7 @@ const Home: NextPageWithLayout = () => {
     <>
       <SearchBar setSearchKey={setSearchKey} />
       <main>
-        <div className="container mx-auto px-10">
+        <div className="container mx-auto mt-2 p-0 md:px-10">
           <div className="grid grid-cols-1 gap-4 md:grid-cols-4 lg:grid-cols-5">
             {filterePokemons.map((pokemon: NamedAPIResource) => (
               <PokemonCard pokemon={pokemon} key={pokemon.name} />

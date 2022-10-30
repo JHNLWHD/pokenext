@@ -6,9 +6,9 @@ export default function Layout({
   children: JSX.Element
 }): JSX.Element {
   return (
-    <div>
+    <div className="mx-10">
       <Navbar />
-      <main className="mx-10">{children}</main>
+      <main>{children}</main>
     </div>
   )
 }

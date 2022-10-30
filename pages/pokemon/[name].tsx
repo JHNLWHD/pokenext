@@ -14,5 +14,9 @@ export default function Pokemon() {
   if (error) return <ErrorPage />
   if (!result) return <Spinner />
 
-  return <PokemonDetailsCard pokemon={result} />
+  return (
+    <div className="m-auto flex h-screen px-6">
+      <PokemonDetailsCard pokemon={result} />
+    </div>
+  )
 }

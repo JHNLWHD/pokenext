@@ -18,11 +18,11 @@ export default function MovesCard({ moves }: MovesCardProps) {
       data-tooltip-placement="left"
       className="flex flex-col items-center justify-around"
     >
-      <div className="flex flex-col">
-        <div className="text-md mx-auto">
+      <div className="flex flex-col text-xs md:text-lg">
+        <div className="mx-auto">
           {pokemonMoves[0] ? UCFirst(pokemonMoves[0]) : ''}
         </div>
-        <div className="text-md mx-auto">
+        <div className="mx-auto">
           {pokemonMoves[1] ? UCFirst(pokemonMoves[1]) : ''}
         </div>
       </div>

@@ -80,11 +80,11 @@ export default function PokemonDetailsCard({
     )
   }
   return (
-    <div className="container mx-auto max-w-md">
+    <div className="container m-auto max-w-md p-4 md:max-w-full">
       <div
-        className={`container flex flex-col ${pokemonBorder} my-2 gap-3 rounded-md border-4`}
+        className={`container flex flex-col md:mx-auto md:flex-row ${pokemonBorder} my-2 gap-3 rounded-md border-4`}
       >
-        <div className={`${pokemonBackground} relative h-full`}>
+        <div className={`${pokemonBackground} relative min-h-full w-full`}>
           <div className="flex items-center justify-between pt-5">
             <div className="ml-4">
               <Link href={'/'}>
@@ -115,20 +115,32 @@ export default function PokemonDetailsCard({
             {getArrowLink('right')}
           </div>
         </div>
-        <div className="flex flex-col items-center justify-center">
-          <div className="mt-12 flex items-center justify-center gap-4">
-            {renderPokemonType()}
+        <div className="flex w-full flex-col items-center justify-center">
+          <div className="w-full">
+            <div className="mt-16 flex items-center justify-center gap-4 md:mt-6">
+              {renderPokemonType()}
+            </div>
+            <div
+              className={`${pokemonText} my-4 text-center text-2xl font-bold lg:mt-4`}
+            >
+              About
+            </div>
+            <div className="grid w-full grid-cols-3 divide-x-4">
+              <WeightCard weight={pokemon.weight} />
+              <HeightCard height={pokemon.height} />
+              <MovesCard moves={pokemon.moves} />
+            </div>
+            <div className="mx-auto p-2 text-center lg:text-xl">
+              {pokemonDescription}
+            </div>
           </div>
-          <div className={`${pokemonText} my-4 text-2xl font-bold`}>About</div>
-          <div className="grid w-full grid-cols-3 divide-x-4">
-            <WeightCard weight={pokemon.weight} />
-            <HeightCard height={pokemon.height} />
-            <MovesCard moves={pokemon.moves} />
-          </div>
-          <div className="mx-auto p-2 text-center">{pokemonDescription}</div>
-          <div className={`${pokemonText} text-2xl font-bold`}>Base Stats</div>
-          <div className="mx-auto w-full px-10">
-            <PokemonGraph pokemon={pokemon} />
+          <div className="flex w-full flex-col items-center justify-center">
+            <div className={`${pokemonText} text-2xl font-bold lg:my-6`}>
+              Base Stats
+            </div>
+            <div className="mx-auto w-full px-10">
+              <PokemonGraph pokemon={pokemon} />
+            </div>
           </div>
         </div>
       </div>
