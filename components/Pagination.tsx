@@ -12,7 +12,7 @@ export default function Pagination({
   setUrl,
 }: PaginationProps) {
   return (
-    <div className="flex flex-col items-center pb-4">
+    <div className="sticky bottom-0 flex flex-col items-center pb-4">
       <div className="xs:mt-0 mt-2 inline-flex">
         <button
           disabled={prevUrl === ''}
