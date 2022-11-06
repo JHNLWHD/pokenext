@@ -10,6 +10,7 @@ import Pagination from '../components/Pagination'
 import { useContext, useState } from 'react'
 import { sortData } from '../utils/string.utils'
 import { AppContext } from '../context/AppContext'
+import Head from 'next/head'
 
 const Home: NextPageWithLayout = () => {
   const { nameSort } = useContext(AppContext)
@@ -55,6 +56,11 @@ const Home: NextPageWithLayout = () => {
 
   return (
     <>
+      <Head>
+        <title>Pokedex</title>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <SearchBar setSearchKey={setSearchKey} />
       <main>
         <div className="container mx-auto mt-2 p-0 md:px-10">
